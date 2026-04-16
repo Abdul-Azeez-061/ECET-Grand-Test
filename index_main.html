@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mock Test — 200Q</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Sticky Navbar ─────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="nav-title">Mock<span>Test</span> <span id="user-name" class="user-name"></span></div>
+
+    <div id="timer-display">03:00:00</div>
+
+    <button id="sidebar-toggle-btn" class="btn-sidebar-toggle">📋</button>
+    <button id="submit-btn" disabled>Submit Test</button>
+  </nav>
+
+  <!-- ── Main App ───────────────────────────────────────────── -->
+  <main id="app">
+    <div id="test-container"></div>
+  </main>
+
+  <!-- ── Confirm Modal ─────────────────────────────────────── -->
+  <div id="confirm-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <div class="modal-icon">⚠️</div>
+      <div class="modal-title" id="modal-title">Submit Your Test?</div>
+      <div class="modal-body">
+        Once submitted, you cannot change your answers.<br>
+        Please review the stats below before confirming.
+      </div>
+      <div class="modal-stats">
+        <div class="modal-stat stat-answered">
+          <div class="modal-stat-num" id="modal-answered">0</div>
+          <div class="modal-stat-label">Answered</div>
+        </div>
+        <div class="modal-stat stat-skipped">
+          <div class="modal-stat-num" id="modal-skipped">200</div>
+          <div class="modal-stat-label">Skipped</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" id="modal-cancel-btn">Go Back</button>
+        <button class="btn-modal-confirm" id="modal-confirm-btn">Yes, Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Scripts ───────────────────────────────────────────── -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

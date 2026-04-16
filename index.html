@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examination Instructions</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============================
+     NAME MODAL
+============================= -->
+<div class="modal-overlay" id="nameModal">
+  <div class="modal-card">
+    <div class="modal-icon">👤</div>
+    <h2>Welcome, Candidate!</h2>
+    <p>Please enter your full name to personalize your exam session and proceed to the instructions.</p>
+
+    <div class="name-input-wrap">
+      <span class="input-icon">✏️</span>
+      <input
+        type="text"
+        class="name-input"
+        id="nameInput"
+        placeholder="Enter your full name..."
+        maxlength="60"
+        autocomplete="off"
+      >
+    </div>
+    <p class="name-error" id="nameError">⚠️ Please enter your name to continue.</p>
+
+    <button class="modal-btn" onclick="submitName()">
+      Continue to Instructions →
+    </button>
+  </div>
+</div>
+
+<!-- ============================
+     HEADER
+============================= -->
+<header class="header">
+  <div class="header-left">
+    <div class="header-logo">E</div>
+    <div class="header-title">Exam<span>Portal</span></div>
+  </div>
+  <div class="header-right">
+    <div class="exam-badge">📋 Assessment 2026</div>
+    <div class="timer-display">
+      <div class="timer-dot"></div>
+      180:00 mins
+    </div>
+  </div>
+</header>
+
+<!-- ============================
+     MAIN LAYOUT
+============================= -->
+<div class="main-wrapper">
+
+  <!-- ===== PROFILE CARD ===== -->
+  <aside class="profile-card">
+    <div class="profile-avatar-wrap">
+      <img
+        class="profile-avatar"
+        src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+        alt="Profile"
+      >
+      <div class="online-dot"></div>
+    </div>
+
+    <div>
+      <div class="profile-name" id="profileName">Candidate</div>
+      <div class="profile-id">CSE Stream</div>
+
+      <div class="profile-divider"></div>
+
+      <div class="profile-stat">
+        <span class="profile-stat-label">Duration</span>
+        <span class="profile-stat-value">180 min</span>
+      </div>
+      <div class="profile-stat">
+        <span class="profile-stat-label">Questions</span>
+        <span class="profile-stat-value">200</span>
+      </div>
+      <div class="profile-stat">
+        <span class="profile-stat-label">Total Marks</span>
+        <span class="profile-stat-value">200</span>
+      </div>
+      <div class="profile-stat">
+        <span class="profile-stat-label">Negative Marks</span>
+        <span class="profile-stat-value" style="color:#22c55e">None</span>
+      </div>
+      <div class="profile-stat">
+        <span class="profile-stat-label">Language</span>
+        <span class="profile-stat-value">English</span>
+      </div>
+
+      <div class="profile-info-box">
+        <p>📌 Ensure stable internet throughout the exam session.</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== INSTRUCTIONS CARD ===== -->
+  <main class="instructions-card">
+
+    <!-- Card Header -->
+    <div class="card-header">
+      <div class="card-header-icon">📋</div>
+      <div class="card-header-text">
+        <h2>Examination Instructions</h2>
+        <p>Read all instructions carefully before you begin the exam</p>
+      </div>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body">
+
+      <!-- ── SECTION 1: EXAM OVERVIEW ── -->
+      <div class="section-header">
+        <div class="section-header-icon icon-blue">📝</div>
+        <h3>Question Paper Overview</h3>
+      </div>
+
+      <!-- Quick Info Grid -->
+      <div class="paper-info-grid">
+        <div class="paper-info-item">
+          <div class="paper-info-icon">⏱️</div>
+          <div>
+            <div class="paper-info-label">Total Duration</div>
+            <div class="paper-info-value">180 Minutes</div>
+          </div>
+        </div>
+        <div class="paper-info-item">
+          <div class="paper-info-icon">❓</div>
+          <div>
+            <div class="paper-info-label">Total Questions</div>
+            <div class="paper-info-value">200 Questions</div>
+          </div>
+        </div>
+        <div class="paper-info-item">
+          <div class="paper-info-icon">🏆</div>
+          <div>
+            <div class="paper-info-label">Total Marks</div>
+            <div class="paper-info-value">200 Marks</div>
+          </div>
+        </div>
+        <div class="paper-info-item">
+          <div class="paper-info-icon">🌐</div>
+          <div>
+            <div class="paper-info-label">Medium</div>
+            <div class="paper-info-value">English Only</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marks Distribution Table -->
+      <div class="marks-table-wrap">
+        <table class="marks-table">
+          <thead>
+            <tr>
+              <th>Section</th>
+              <th style="text-align:center">Questions</th>
+              <th style="text-align:center">Marks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="section-dot" style="background:#6366f1;"></span>
+                Mathematics
+                <span style="color:#94a3b8;font-size:11px;">
+                  (Common – Engineering)
+                </span>
+              </td>
+              <td style="text-align:center">
+                <span class="q-badge">50</span>
+              </td>
+              <td style="text-align:center">
+                <span class="marks-badge">50</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="section-dot" style="background:#f59e0b;"></span>
+                Physics
+                <span style="color:#94a3b8;font-size:11px;">
+                  (Common – Engineering)
+                </span>
+              </td>
+              <td style="text-align:center">
+                <span class="q-badge">25</span>
+              </td>
+              <td style="text-align:center">
+                <span class="marks-badge">25</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="section-dot" style="background:#10b981;"></span>
+                Chemistry
+                <span style="color:#94a3b8;font-size:11px;">
+                  (Common – Engineering)
+                </span>
+              </td>
+              <td style="text-align:center">
+                <span class="q-badge">25</span>
+              </td>
+              <td style="text-align:center">
+                <span class="marks-badge">25</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="section-dot" style="background:#3b82f6;"></span>
+                Computer Science &amp; Engineering
+              </td>
+              <td style="text-align:center">
+                <span class="q-badge">100</span>
+              </td>
+              <td style="text-align:center">
+                <span class="marks-badge">100</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Total</strong>
+              </td>
+              <td style="text-align:center">
+                <span class="q-badge total-q-badge">200</span>
+              </td>
+              <td style="text-align:center">
+                <span class="marks-badge total-m-badge">200</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Exam Rules -->
+      <div class="rules-list">
+        <div class="rule-item">
+          <div class="rule-icon">✅</div>
+          <div class="rule-text">
+            The question paper consists of <b>objective type (MCQ)</b> questions only.
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🔘</div>
+          <div class="rule-text">
+            Each question has <b>4 options</b>; select the <b>one correct answer</b>.
+            Questions are displayed <b>one at a time</b> on screen.
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🚫</div>
+          <div class="rule-text">
+            <b>There are no negative marks.</b> Attempt all questions confidently.
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🌐</div>
+          <div class="rule-text">
+            Questions will be available in <b>English</b> language only.
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">⏱️</div>
+          <div class="rule-text">
+            You have <b>180 minutes</b> to attempt <b>200 questions</b> —
+            approximately <b>54 seconds</b> per question.
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- ── SECTION 2: GENERAL INSTRUCTIONS ── -->
+      <div class="section-header">
+        <div class="section-header-icon icon-blue">ℹ️</div>
+        <h3>General Instructions</h3>
+      </div>
+
+      <ul class="instructions-list">
+        <li>
+          <span class="list-number">1</span>
+          The clock is set at the server. The countdown timer in the
+          <b>top right corner</b> shows remaining time. When it reaches zero,
+          the exam ends automatically — no submission required.
+        </li>
+        <li>
+          <span class="list-number">2</span>
+          Click the <b>">" arrow</b> to collapse the question palette and
+          maximise the question window. Click <b>"&lt;"</b> to restore the palette.
+        </li>
+        <li>
+          <span class="list-number">3</span>
+          Click your <b>Profile image</b> (top right) to change the display
+          language for the entire paper.
+        </li>
+        <li>
+          <span class="list-number">4</span>
+          Use <b>Scroll Down / Scroll Up</b> buttons to navigate within the
+          question area without manually scrolling.
+        </li>
+        <li>
+          <span class="list-number">5</span>
+          You can switch between <b>sections and questions</b> at any time
+          during the exam as per your convenience.
+        </li>
+      </ul>
+
+      <div class="section-divider"></div>
+
+      <!-- ── SECTION 3: STATUS LEGEND ── -->
+      <div class="section-header">
+        <div class="section-header-icon icon-purple">🎨</div>
+        <h3>Question Palette — Status Legend</h3>
+      </div>
+
+      <div class="status-grid">
+        <div class="status-item">
+          <div class="status-badge badge-grey">1</div>
+          <div class="status-info">
+            <strong>Not Visited</strong>
+            <span>You have not visited the question yet.</span>
+          </div>
+        </div>
+        <div class="status-item">
+          <div class="status-badge badge-red">2</div>
+          <div class="status-info">
+            <strong>Not Answered</strong>
+            <span>You visited the question but did not answer it.</span>
+          </div>
+        </div>
+        <div class="status-item">
+          <div class="status-badge badge-green">3</div>
+          <div class="status-info">
+            <strong>Answered</strong>
+            <span>You have answered the question.</span>
+          </div>
+        </div>
+        <div class="status-item">
+          <div class="status-badge badge-purple">4</div>
+          <div class="status-info">
+            <strong>Marked for Review</strong>
+            <span>Not answered, but flagged to revisit later.</span>
+          </div>
+        </div>
+        <div class="status-item">
+          <div class="status-badge badge-dark-purple">5</div>
+          <div class="status-info">
+            <strong>Answered &amp; Marked for Review ✅</strong>
+            <span>Answered and marked — <b style="color:#16a34a">will be evaluated.</b></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- ── SECTION 4: NAVIGATION ── -->
+      <div class="section-header">
+        <div class="section-header-icon icon-green">🧭</div>
+        <h3>Navigating Questions</h3>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon">🔢</div>
+          <div class="tip-title">Jump to Question</div>
+          <div class="tip-desc">
+            Click any question number in the palette to navigate directly.
+            This does <em>not</em> save your current answer.
+          </div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">💾</div>
+          <div class="tip-title">Save &amp; Next</div>
+          <div class="tip-desc">
+            Click <b>Save &amp; Next</b> to save your answer and move
+            to the next question automatically.
+          </div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🔖</div>
+          <div class="tip-title">Mark for Review</div>
+          <div class="tip-desc">
+            Click <b>Mark for Review &amp; Next</b> to save, flag the
+            question, and move forward for later revisit.
+          </div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🔀</div>
+          <div class="tip-title">Switch Sections</div>
+          <div class="tip-desc">
+            Section names are on the top bar. Click any to switch freely
+            anytime during the exam.
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- ── SECTION 5: HOW TO ANSWER ── -->
+      <div class="section-header">
+        <div class="section-header-icon icon-orange">✏️</div>
+        <h3>How to Answer a Question</h3>
+      </div>
+
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-text">
+            Click the <b>option button</b> to select your answer.
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-text">
+            Click the <b>same option again</b> or <b>Clear Response</b>
+            to deselect your chosen answer.
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-text">
+            Click a <b>different option</b> to change your selection.
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-text">
+            You <b>MUST</b> click <b>Save &amp; Next</b> to record your answer —
+            selecting alone is not sufficient.
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">5</div>
+          <div class="step-text">
+            To change a saved answer, navigate back to that question and
+            repeat the selection procedure.
+          </div>
+        </div>
+      </div>
+
+      <!-- Alert Box -->
+      <div class="alert-box">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+          <strong>Important Notice</strong>
+          <p>
+            Do not refresh or close the browser window during the exam —
+            progress may be lost. The exam auto-submits when the timer
+            reaches zero; no manual submission is needed.
+          </p>
+        </div>
+      </div>
+
+      <!-- ── CONSENT ── -->
+      <div class="consent-section">
+        <label class="consent-label" for="consent">
+          <input type="checkbox" class="consent-checkbox" id="consent">
+          <span class="consent-text">
+            I, <strong id="consentName">the candidate</strong>, have read and
+            understood all the instructions above. I hereby <strong>consent</strong>
+            to the examination rules and agree to abide by them throughout the
+            duration of this exam.
+          </span>
+        </label>
+
+        <button class="enter-btn" id="enterBtn" disabled onclick="goToTest()">
+          Enter Examination
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+
+    </div><!-- /card-body -->
+  </main>
+</div><!-- /main-wrapper -->
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  © 2024 ExamPortal &nbsp;|&nbsp; Computer Science &amp; Engineering — Assessment Examination
+  &nbsp;|&nbsp; All Rights Reserved
+</footer>
+
+<script>
+  /* ── NAME MODAL ── */
+  const nameInput   = document.getElementById('nameInput');
+  const nameError   = document.getElementById('nameError');
+  const profileName = document.getElementById('profileName');
+  const consentName = document.getElementById('consentName');
+
+  // Allow pressing Enter in the name input
+  nameInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') submitName();
+  });
+
+  // Clear error on typing
+  nameInput.addEventListener('input', () => {
+    if (nameInput.value.trim()) nameError.classList.remove('show');
+  });
+
+  function submitName() {
+    const name = nameInput.value.trim();
+    if (!name) {
+      nameError.classList.add('show');
+      nameInput.focus();
+      return;
+    }
+
+    // Capitalise each word
+    const formatted = name
+      .split(' ')
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+      .join(' ');
+
+    // Update profile card & consent text
+    profileName.textContent = formatted;
+    consentName.textContent  = formatted;
+
+    // Save name to localStorage
+    localStorage.setItem('userName', formatted);
+
+    // Hide modal
+    document.getElementById('nameModal').style.display = 'none';
+  }
+
+  /* ── CONSENT CHECKBOX ── */
+  const checkbox = document.getElementById('consent');
+  const enterBtn = document.getElementById('enterBtn');
+
+  checkbox.addEventListener('change', () => {
+    enterBtn.disabled = !checkbox.checked;
+  });
+
+  /* ── ENTER TEST ── */
+  function goToTest() {
+    window.location.href = 'index_main.html';
+  }
+</script>
+</body>
+</html>
