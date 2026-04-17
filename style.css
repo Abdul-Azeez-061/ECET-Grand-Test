@@ -88,15 +88,40 @@ body {
   color: var(--orange);
 }
 
+/* user-name removed from navbar — now lives in sidebar */
 .user-name {
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: var(--text-dim);
-  margin-left: 12px;
-  padding: 4px 8px;
-  background: var(--bg2);
-  border-radius: 6px;
+  display: none;
+}
+
+/* ── Candidate name in Question Map sidebar ─────────────────── */
+.sidebar-candidate-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface2);
   border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.sidebar-candidate-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sidebar-candidate-value {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Timer */
@@ -273,33 +298,6 @@ body {
   overflow: auto;
 }
 
-.sidebar-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  align-items: flex-start;
-  margin-bottom: 18px;
-}
-
-.sidebar-title {
-  text-transform: uppercase;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  color: var(--text-muted);
-}
-
-.sidebar-sub {
-  margin-top: 4px;
-  font-size: 1.05rem;
-  font-weight: 700;
-}
-
-.sidebar-status {
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  color: var(--text);
-  white-space: nowrap;
-}
 
 .question-grid {
   display: grid;
@@ -312,8 +310,8 @@ body {
   background: var(--surface2);
   color: var(--text);
   font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
   border-radius: 8px;
   padding: 10px 0;
   cursor: pointer;
@@ -321,56 +319,171 @@ body {
 }
 
 .question-number.answered {
-  background: rgba(59,130,246,0.12);
-  border-color: rgba(59,130,246,0.35);
+  background: #22c55e;
+  border-color: #16a34a;
+  color: #fff;
+  border-radius: 8px;
 }
 
 .question-number.not-answered {
-  background: rgba(248,113,113,0.12);
-  border-color: rgba(239,68,68,0.35);
-  color: var(--text);
+  background: #ef4444;
+  border-color: #dc2626;
+  color: #fff;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
 .question-number.not-visited {
   background: var(--surface2);
   border-color: var(--border2);
+  color: var(--text-muted);
 }
 
 .question-number.marked {
-  background: rgba(124,58,237,0.12);
-  border-color: rgba(124,58,237,0.35);
-  color: var(--text);
+  background: #7c3aed;
+  border-color: #6d28d9;
+  color: #fff;
+  border-radius: 50%;
 }
 
 .question-number.answered-marked {
-  background: linear-gradient(135deg, rgba(37,99,235,0.18), rgba(124,58,237,0.18));
-  border-color: rgba(124,58,237,0.45);
-  color: var(--text);
+  background: #7c3aed;
+  border-color: #6d28d9;
+  color: #fff;
+  border-radius: 50%;
+  position: relative;
 }
 
 .question-number.active {
   background: var(--blue);
   color: #fff;
   border-color: var(--blue);
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.35);
 }
 
 .sidebar-legend {
-  display: grid;
-  gap: 10px;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
-.legend-row {
+/* ── NTA-style legend grid ─────────────────────────────────── */
+.legend-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.legend-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid var(--border2);
-  background: var(--surface2);
+  font-size: 0.82rem;
   color: var(--text);
+  line-height: 1.35;
+}
+
+.legend-item-wide {
+  grid-column: 1 / -1;
+}
+
+.legend-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+.legend-label small {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* Badge base */
+.legend-badge {
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
   font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Answered — green rounded square */
+.lbadge-answered {
+  background: #22c55e;
+  border-radius: 8px;
+}
+
+/* Not Answered — red pentagon/shield */
+.lbadge-not-answered {
+  background: #ef4444;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border-radius: 0;
+}
+
+/* Not Visited — grey square */
+.lbadge-not-visited {
+  background: #94a3b8;
+  border-radius: 6px;
+}
+
+/* Marked for Review — purple circle */
+.lbadge-marked {
+  background: #7c3aed;
+  border-radius: 50%;
+}
+
+/* Answered + Marked — purple circle with green tick overlay */
+.lbadge-answered-marked {
+  background: #7c3aed;
+  border-radius: 50%;
+}
+
+.lbadge-answered-marked::after {
+  content: '✓';
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  width: 14px;
+  height: 14px;
+  background: #16a34a;
+  border-radius: 50%;
+  font-size: 8px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #fff;
+  line-height: 1;
+}
+
+/* ── Subject header bar ────────────────────────────────────── */
+.sidebar-subject-header {
+  background: #1d6bba;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 9px 14px;
+  border-radius: 6px 6px 0 0;
+  margin-bottom: 0;
+}
+
+/* ── Choose a question label ───────────────────────────────── */
+.sidebar-choose-label {
+  background: #eef2f8;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border: 1px solid var(--border2);
+  border-top: none;
+  margin-bottom: 12px;
+  border-radius: 0 0 4px 4px;
 }
 
 .legend-dot {
