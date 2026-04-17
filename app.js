@@ -132,14 +132,15 @@ function renderTest() {
       </div>
 
       <aside class="sidebar">
-        <div class="sidebar-head">
-          <div>
-            <div class="sidebar-title">Question Map</div>
-            <div class="sidebar-sub" id="sidebar-block-label"></div>
-          </div>
-          <div class="sidebar-status"><span id="sidebar-answered-count">0</span> / <span id="sidebar-total-count">0</span></div>
+        <div class="sidebar-candidate-name" id="sidebar-candidate-name">
+          <span class="sidebar-candidate-label">👤 Candidate</span>
+          <span class="sidebar-candidate-value" id="sidebar-user-name">—</span>
         </div>
         <div class="sidebar-legend" id="sidebar-legend"></div>
+        <div class="sidebar-subject-header">
+          <span id="sidebar-block-label"></span>
+        </div>
+        <div class="sidebar-choose-label">Choose a Question</div>
         <div class="question-grid" id="question-grid"></div>
       </aside>
     </div>
@@ -232,8 +233,7 @@ function renderQuestionGrid() {
   const block = getBlockMeta(currentBlock);
   const answeredCount = answers.filter((_, index) => index >= block.start && index <= block.end && answers[index] !== null).length;
 
-  document.getElementById("sidebar-answered-count").textContent = answeredCount;
-  document.getElementById("sidebar-total-count").textContent = block.count;
+  // answered count is tracked through the legend
 
   const gridHTML = Array.from({ length: block.count }, (_, localIndex) => {
     const globalIndex = getGlobalIndex(currentBlock, localIndex);
@@ -309,8 +309,7 @@ function updateSidebarStatus() {
   const notVisited = visited.filter((visited, index) => blockRange(index) && !visited).length;
   const notAnswered = visited.filter((v, index) => blockRange(index) && v && answers[index] === null).length;
 
-  document.getElementById("sidebar-answered-count").textContent = answered;
-  document.getElementById("sidebar-total-count").textContent = total;
+  // counts are now shown inside the legend badges
   document.getElementById("sidebar-legend").innerHTML = renderSidebarLegend({ answered, notAnswered, notVisited, markedNotAnswered, answeredMarked });
 }
 
@@ -329,30 +328,27 @@ function renderSidebarLegend(stats = {}) {
   } = stats;
 
   return `
-    <div class="legend-row">
-      <span class="legend-dot status-answered"></span>
-      <span>Answered</span>
-      <span class="legend-count">${answered}</span>
-    </div>
-    <div class="legend-row">
-      <span class="legend-dot status-not-answered"></span>
-      <span>Not Answered</span>
-      <span class="legend-count">${notAnswered}</span>
-    </div>
-    <div class="legend-row">
-      <span class="legend-dot status-not-visited"></span>
-      <span>Not Visited</span>
-      <span class="legend-count">${notVisited}</span>
-    </div>
-    <div class="legend-row">
-      <span class="legend-dot status-marked"></span>
-      <span>Marked for Review</span>
-      <span class="legend-count">${markedNotAnswered}</span>
-    </div>
-    <div class="legend-row">
-      <span class="legend-dot status-answered-marked"></span>
-      <span>Answered & Reviewed</span>
-      <span class="legend-count">${answeredMarked}</span>
+    <div class="legend-grid">
+      <div class="legend-item">
+        <span class="legend-badge lbadge-answered">${answered}</span>
+        <span class="legend-label">Answered</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-badge lbadge-not-answered">${notAnswered}</span>
+        <span class="legend-label">Not<br>Answered</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-badge lbadge-not-visited">${notVisited}</span>
+        <span class="legend-label">Not<br>Visited</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-badge lbadge-marked">${markedNotAnswered}</span>
+        <span class="legend-label">Marked for Review</span>
+      </div>
+      <div class="legend-item legend-item-wide">
+        <span class="legend-badge lbadge-answered-marked">${answeredMarked}</span>
+        <span class="legend-label">Answered &amp; Marked for Review <small>(will also be evaluated)</small></span>
+      </div>
     </div>
   `;
 }
@@ -576,10 +572,10 @@ document.addEventListener("DOMContentLoaded", () => {
   checkSubmitEnabled();
 
   // Set user name from localStorage
-  const userName = localStorage.getItem('userName');
-  if (userName) {
-    document.getElementById('user-name').textContent = userName;
-  }
+  const userName = localStorage.getItem('userName') || 'Candidate';
+  document.getElementById('nav-user-name').textContent = userName;
+  const sidebarNameEl = document.getElementById('sidebar-user-name');
+  if (sidebarNameEl) sidebarNameEl.textContent = userName;
 
   // Strict tab switching and minimizing protection
   window.addEventListener('visibilitychange', () => {
